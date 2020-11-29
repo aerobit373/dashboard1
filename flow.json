@@ -1,1 +1,303 @@
-[]
+[
+    {
+        "id": "2f22a3cd.f2c92c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4e420c9.e1b36f4",
+        "type": "tab",
+        "label": "Flow Raspberry",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "88bbe218.63673",
+        "type": "subflow",
+        "name": "Subflow 1",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 50,
+                "y": 30,
+                "wires": [
+                    {
+                        "id": "ab7f195c.aa0308"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 340,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "ab7f195c.aa0308",
+                        "port": "2"
+                    }
+                ]
+            },
+            {
+                "x": 340,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "ab7f195c.aa0308",
+                        "port": "0"
+                    }
+                ]
+            },
+            {
+                "x": 340,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "ab7f195c.aa0308",
+                        "port": "1"
+                    }
+                ]
+            }
+        ],
+        "env": [
+            {
+                "name": "MAX",
+                "type": "num",
+                "value": "100",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-full",
+                    "type": "spinner"
+                }
+            },
+            {
+                "name": "MIN",
+                "type": "num",
+                "value": "0",
+                "ui": {
+                    "icon": "font-awesome/fa-thermometer-empty",
+                    "type": "spinner"
+                }
+            }
+        ],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "ea5e934f.a933",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "enriquecrespo.com",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "ab7f195c.aa0308",
+        "type": "switch",
+        "z": "88bbe218.63673",
+        "name": "If else",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lt",
+                "v": "MIN",
+                "vt": "env"
+            },
+            {
+                "t": "gt",
+                "v": "MAX",
+                "vt": "env"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "af22b399.12614",
+        "type": "exec",
+        "z": "4e420c9.e1b36f4",
+        "command": "vcgencmd measure_temp",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "RPi Temp.",
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "14f0a295.59181d"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "408435c9.447fec",
+        "type": "exec",
+        "z": "4e420c9.e1b36f4",
+        "command": "top -d 0.5 -b -n2 | grep \"Cpu(s)\"|tail -n 1 | awk '{print $2 + $4}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "CPU Load",
+        "x": 390,
+        "y": 220,
+        "wires": [
+            [
+                "ba819184.c072b"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "8fbcbdf9.549b7",
+        "type": "exec",
+        "z": "4e420c9.e1b36f4",
+        "command": "free | grep Mem | awk '{print 100*($4+$6+$7)/$2}'",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "Free Memory",
+        "x": 390.0000190734863,
+        "y": 284.22223567962646,
+        "wires": [
+            [
+                "daf6433c.bad81"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "14f0a295.59181d",
+        "type": "function",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "func": "str = msg.payload\nmsg.payload = str.substring(5,9);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 120,
+        "wires": [
+            [
+                "3c8ae2a0.ff9c5e"
+            ]
+        ]
+    },
+    {
+        "id": "daf6433c.bad81",
+        "type": "function",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "func": "str = msg.payload\nmsg.payload = parseInt(str.substring(0,str.length - 1));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 594.7778091430664,
+        "y": 273.66666316986084,
+        "wires": [
+            [
+                "b74d6862.d56368"
+            ]
+        ]
+    },
+    {
+        "id": "bfeea352.4dd03",
+        "type": "inject",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "af22b399.12614",
+                "408435c9.447fec",
+                "8fbcbdf9.549b7"
+            ]
+        ]
+    },
+    {
+        "id": "3c8ae2a0.ff9c5e",
+        "type": "mqtt out",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/Temperatura",
+        "qos": "",
+        "retain": "",
+        "broker": "ea5e934f.a933",
+        "x": 890,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "ba819184.c072b",
+        "type": "mqtt out",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/CPU",
+        "qos": "",
+        "retain": "",
+        "broker": "ea5e934f.a933",
+        "x": 830,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "b74d6862.d56368",
+        "type": "mqtt out",
+        "z": "4e420c9.e1b36f4",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/Memory",
+        "qos": "",
+        "retain": "",
+        "broker": "ea5e934f.a933",
+        "x": 900,
+        "y": 280,
+        "wires": []
+    }
+]
