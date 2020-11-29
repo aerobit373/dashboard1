@@ -106,6 +106,140 @@
         "willPayload": ""
     },
     {
+        "id": "4572a55c.f43dac",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "64882ffa.0a3c9",
+        "type": "ui_group",
+        "name": "Temperatura",
+        "tab": "4572a55c.f43dac",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b695d6d5.c3db08",
+        "type": "ui_group",
+        "name": "CPU",
+        "tab": "4572a55c.f43dac",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "b0f16f57.d6078",
+        "type": "ui_group",
+        "name": "Memoria",
+        "tab": "4572a55c.f43dac",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "1ade6c98.dd7dd3",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
         "id": "ab7f195c.aa0308",
         "type": "switch",
         "z": "88bbe218.63673",
@@ -299,5 +433,266 @@
         "x": 900,
         "y": 280,
         "wires": []
+    },
+    {
+        "id": "c9d3ed2e.000d7",
+        "type": "mqtt in",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/Temperatura",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ea5e934f.a933",
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "d0829640.ff1cb8",
+                "29105f70.cadc6"
+            ]
+        ]
+    },
+    {
+        "id": "1cb1a89a.9694a7",
+        "type": "mqtt in",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/CPU",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ea5e934f.a933",
+        "x": 220,
+        "y": 180,
+        "wires": [
+            [
+                "f4265561.0db998",
+                "918a3377.b78e"
+            ]
+        ]
+    },
+    {
+        "id": "ee7af37b.ebf8a",
+        "type": "mqtt in",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "topic": "aprendiendonodered/alumno00/raspberrypi/Memoria",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ea5e934f.a933",
+        "x": 240,
+        "y": 240,
+        "wires": [
+            [
+                "a491daf.f4a8e28",
+                "9210e5a6.9eaf78"
+            ]
+        ]
+    },
+    {
+        "id": "29105f70.cadc6",
+        "type": "ui_gauge",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "64882ffa.0a3c9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 680,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "f4265561.0db998",
+        "type": "ui_gauge",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "b695d6d5.c3db08",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a491daf.f4a8e28",
+        "type": "ui_gauge",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "b0f16f57.d6078",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 670,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "d0829640.ff1cb8",
+        "type": "ui_chart",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "64882ffa.0a3c9",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "918a3377.b78e",
+        "type": "ui_chart",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "b695d6d5.c3db08",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9210e5a6.9eaf78",
+        "type": "ui_chart",
+        "z": "2f22a3cd.f2c92c",
+        "name": "",
+        "group": "b0f16f57.d6078",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 670,
+        "y": 320,
+        "wires": [
+            []
+        ]
     }
 ]
